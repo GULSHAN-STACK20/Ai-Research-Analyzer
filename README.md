@@ -1,72 +1,61 @@
-# 📄 AI Research Paper Analyzer
+# 🤖 AI Research Paper Analyzer (Multi-Agent System)
 
-👨‍💻 Developed by **Gulshan Kotiya**
+👨‍💻 Developed by Gulshan Kotiya
 
----
+This project is a multi-agent AI system that analyzes research papers using OpenRouter LLMs...
 
 ## 🚀 Overview
-
-This project is an AI-powered Research Paper Analyzer that uses a multi-agent architecture to automatically analyze, summarize, and extract insights from academic research papers.
-
-It helps researchers and students quickly understand complex papers without reading the entire document.
+This project is an AI-powered system that analyzes research papers using a multi-agent architecture. It automates understanding of academic papers by extracting key insights, summaries, citations, and practical takeaways.
 
 ---
 
-## 🧠 Key Features
 
-- 🔍 Extracts problem statement, methodology, and key findings
-- 🧠 Generates a 150–200 word executive summary
-- 📚 Extracts citations and references
-- 💡 Provides practical insights and takeaways
-- 🔁 Review Agent with retry logic for quality control
-- 📊 Real-time progress tracking UI using Streamlit
-- ⚡ Powered by OpenRouter (LLaMA / Mistral models)
+## 🧠 Architecture
 
----
+### 🔹 Boss Agent (Orchestrator)
+- Controls workflow
+- Delegates tasks
+- Combines outputs
 
-## 🏗️ Architecture
+### 🔹 Sub Agents
+- 📊 Paper Analyzer → Extracts methodology & findings
+- 📝 Summary Agent → Generates executive summary
+- 📚 Citation Agent → Extracts references
+- 💡 Insights Agent → Generates real-world applications
 
-This project follows a **multi-agent system design**:
-
-- **Boss Agent (Pipeline Controller)**  
-  Orchestrates the entire workflow
-
-- **Sub Agents:**
-  - Analyzer Agent
-  - Summary Agent
-  - Citation Agent
-  - Insights Agent
-
-- **Review Agent:**
-  - Evaluates outputs (score 1–10)
-  - Triggers retry if quality is low
+### 🔹 Review Agent (Quality Control)
+- Scores output (1–10)
+- Triggers retries if score < 7
+- Ensures high-quality results
 
 ---
 
-## 🔄 Workflow
+## 🔁 Workflow
 
-1. Upload research paper (PDF)
-2. Extract text using pdfplumber
-3. Analyzer Agent processes paper
-4. Review Agent validates output
-5. Summary, Citation, and Insights agents run
-6. Final research brief is generated
+1. Upload Research Paper (PDF)
+2. Paper Analyzer → Review → Retry if needed
+3. Summary, Citation, Insights → Review → Retry
+4. Boss Agent combines final output
+5. Output: Structured Research Brief
 
 ---
 
-## 🖥️ Tech Stack
+## 🛠 Tech Stack
 
 - Python
-- Streamlit (UI)
-- OpenRouter API (LLMs)
-- pdfplumber (PDF parsing)
-- dotenv (environment management)
+- OpenAI API
+- Streamlit
+- pdfplumber
 
 ---
 
-## 📦 Installation
+## ⚠️ Known Limitations
+
+- OpenAI API usage may be limited due to quota restrictions
+- Fallback handling is implemented for API failures
+
+## ▶️ How to Run
 
 ```bash
-git clone https://github.com/your-username/ai-research-analyzer.git
-cd ai-research-analyzer
-pip install -r requirements.txt
+pip install openai pdfplumber python-dotenv streamlit
+streamlit run app.py
